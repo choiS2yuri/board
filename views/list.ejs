@@ -12,10 +12,21 @@
     <% for(let i = 0; i < data.length; i++){ %>
     <ul class="flex justify-between items-center border ">
         <li class="basis-2/4"><a href="/view/<%= data[i]._id %>"><%= data[i].title %></a></li>
-        <li class="basis-2/4"><%= data[i].content %></li>
+        <li class="basis-2/4"><%= data[i].content %><a href="/edit/<%= data[i]._id %>"> ✏</a>/<a href="javascript:deleteFun('<%= data[i]._id %>')">🗑</a></li>
+        <!-- /delete/ a태그에서 스크립트쓰려면 javascript:deleteFun()꼭필요 -->
     </ul>
     <% } %>
+    <a href="/write">글쓰기</a>
     <!-- <%= data[0].title %> -->
     <!-- <%= JSON.stringify(data) %> -->
+    <script>
+        function deleteFun(data){
+            let confirmChk = confirm("정말 삭제 하시겠습니까?")
+            console.log(data)
+            if(confirmChk){
+                window.location.href = '/delete/'+data
+            }
+        }
+    </script>
 </body>
 </html>
